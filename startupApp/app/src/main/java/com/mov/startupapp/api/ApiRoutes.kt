@@ -1,6 +1,7 @@
 package com.mov.startupapp.api
 
 import com.mov.startupapp.routes.CategoriesRoutes
+import com.mov.startupapp.routes.ProductsRoutes
 import com.mov.startupapp.routes.UsersRoutes
 import retrofit2.Retrofit
 
@@ -20,5 +21,10 @@ class ApiRoutes {
     fun getCategoriesRoutes(token: String): CategoriesRoutes {
         return retrofit.getClientWithToken(API_URL, token).create(CategoriesRoutes::class.java)
     }
+
+    fun getProductsRoutes(token: String): ProductsRoutes {
+        return retrofit.getClientWithToken(API_URL, token).create(ProductsRoutes::class.java)
+    }
+
 
 }

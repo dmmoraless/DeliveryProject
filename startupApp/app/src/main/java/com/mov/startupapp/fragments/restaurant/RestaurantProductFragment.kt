@@ -13,8 +13,11 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.gson.Gson
 import com.mov.startupapp.R
 import com.mov.startupapp.models.Category
+import com.mov.startupapp.models.Product
+import com.mov.startupapp.models.ResponseHttp
 import com.mov.startupapp.models.User
 import com.mov.startupapp.providers.CategoriesProvider
+import com.mov.startupapp.providers.ProductsProvider
 import com.mov.startupapp.utils.SharedPref
 import retrofit2.Call
 import java.io.File
@@ -41,6 +44,7 @@ class RestaurantProductFragment : Fragment() {
     var imageFile3: File? = null
 
     var categoriesProvider: CategoriesProvider? = null
+    var productsProvider: ProductsProvider? = null
     var user: User? = null
     var sharedPref: SharedPref? = null
     var categories = ArrayList<Category>()
@@ -74,6 +78,7 @@ class RestaurantProductFragment : Fragment() {
         getUserFromSession()
 
         categoriesProvider = CategoriesProvider(user?.sessionToken!!)
+        productsProvider = ProductsProvider(user?.sessionToken!!)
 
         getCategories()
         return myView
@@ -130,7 +135,40 @@ class RestaurantProductFragment : Fragment() {
         val description = editTextDescription?.text.toString()
         val priceText = editTextPrice?.text.toString()
 
+        var files = ArrayList<File>()
+
         if (isValidForm(name, description, priceText)) {
+
+            val product = Product(
+                name = name,
+                description = description,
+                price = priceText.toDouble(),
+                idCategory = idCategory
+            )
+
+            files.add(imageFile1!!)
+            files.add(imageFile2!!)
+            files.add(imageFile3!!)
+
+            productsProvider?.create(files, product)?.enqueue(object: Callback<ResponseHttp> {
+                override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
+
+
+                    Log.d(TAG, "Response: $response")
+                    Log.d(TAG, "Body: ${response.body()}")
+                    Toast.makeText(requireContext(), response.body()?.message, Toast.LENGTH_LONG).show()
+
+
+                }
+
+                override fun onFailure(call: Call<ResponseHttp>, t: Throwable) {
+
+                    Log.d(TAG, "Error: ${t.message}")
+                    Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                }
+
+            })
+
 
         }
     }

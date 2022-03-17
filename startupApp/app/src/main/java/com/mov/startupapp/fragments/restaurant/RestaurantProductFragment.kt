@@ -19,6 +19,8 @@ import com.mov.startupapp.models.User
 import com.mov.startupapp.providers.CategoriesProvider
 import com.mov.startupapp.providers.ProductsProvider
 import com.mov.startupapp.utils.SharedPref
+import com.tommasoberlose.progressdialog.ProgressDialogFragment
+
 import retrofit2.Call
 import java.io.File
 
@@ -150,27 +152,45 @@ class RestaurantProductFragment : Fragment() {
             files.add(imageFile2!!)
             files.add(imageFile3!!)
 
+            ProgressDialogFragment.showProgressBar(requireActivity())
+
             productsProvider?.create(files, product)?.enqueue(object: Callback<ResponseHttp> {
                 override fun onResponse(call: Call<ResponseHttp>, response: Response<ResponseHttp>) {
 
+                    ProgressDialogFragment.hideProgressBar(requireActivity())
 
                     Log.d(TAG, "Response: $response")
                     Log.d(TAG, "Body: ${response.body()}")
                     Toast.makeText(requireContext(), response.body()?.message, Toast.LENGTH_LONG).show()
 
-
+                    if (response.body()?.isSuccess == true) {
+                        resetForm()
+                    }
                 }
 
                 override fun onFailure(call: Call<ResponseHttp>, t: Throwable) {
-
+                    ProgressDialogFragment.hideProgressBar(requireActivity())
                     Log.d(TAG, "Error: ${t.message}")
                     Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_LONG).show()
+
                 }
 
             })
 
 
         }
+    }
+
+    private fun resetForm() {
+        editTextName?.setText("")
+        editTextDescription?.setText("")
+        editTextPrice?.setText("")
+        imageFile1 = null
+        imageFile2 = null
+        imageFile3 = null
+        imageViewProduct1?.setImageResource(R.drawable.ic_image)
+        imageViewProduct2?.setImageResource(R.drawable.ic_image)
+        imageViewProduct3?.setImageResource(R.drawable.ic_image)
     }
 
     private fun isValidForm(name: String, description: String, price: String): Boolean {

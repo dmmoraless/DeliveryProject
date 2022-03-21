@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.optic.deliverykotlinudemy">
+    package="com.uce.startup">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DeliveryKotlinUdemy"
+        android:theme="@style/Theme.StartUp"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activities.client.products.detail.ClientProductsDetailActivity"
@@ -31,10 +31,7 @@
             android:name=".activities.SaveImageActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.delivery.home.DeliveryHomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activities.restaurant.home.RestaurantHomeActivity"
+            android:name=".activities.undertake.home.UndertakeHomeActivity"
             android:exported="true" />
         <activity
             android:name=".activities.SelectRolesActivity"

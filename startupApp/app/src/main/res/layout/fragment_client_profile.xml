@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.client.ClientProfileFragment">
 
@@ -16,7 +17,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/user_icon"
-            app:civ_border_color="@color/gray"
+            app:civ_border_color="#031A2C"
             app:civ_border_width="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
@@ -29,12 +30,12 @@
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_person_pin_gray"
+                android:src="@drawable/ic_person_pin"
                 />
 
             <TextView
@@ -42,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre de usuario"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -67,7 +70,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email del usuario"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -91,7 +96,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+57 000000000"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -127,6 +134,7 @@
             android:text="EDITAR PERFIL"
             android:background="@drawable/rounded_button"
             android:layout_marginBottom="15dp"
+            app:backgroundTint="#031A2C"
             android:layout_marginTop="10dp"/>
 
     </LinearLayout>

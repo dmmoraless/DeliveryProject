@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.restaurant.RestaurantCategoryFragment">
 
@@ -23,7 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Nombre de la categoria"
-            android:background="@drawable/edittext_custom"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:background="@drawable/add_text"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -43,7 +46,7 @@
         android:background="@drawable/rounded_button"
         android:layout_gravity="bottom"
         android:layout_marginBottom="75dp"
-        app:backgroundTint="@color/black"
+        app:backgroundTint="#031A2C"
         android:textColor="@color/white"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
